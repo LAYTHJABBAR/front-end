@@ -29,4 +29,7 @@ A simple web application that allows users to upload BIM object data and view th
 3. change the mapboxApiKey inside the map.js with your token
 
 4. npm start to run the application (be sure to run the back end server first)
+
+
+![Alt text](image.png)
    
