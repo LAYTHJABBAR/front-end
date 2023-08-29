@@ -1,0 +1,418 @@
+@import './_colors.scss';
+@import './fonts/poppins.scss';
+
+body, 
+p,
+input {
+  font-family: PoppinsRegular !important;
+  letter-spacing: 0.15px;
+}
+
+input::-webkit-input-placeholder {
+  color: $d-subtitle !important;
+  opacity: 1 !important;
+  font-weight: normal !important;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
+}
+
+input::-moz-placeholder {
+  color: $d-subtitle !important;
+  opacity: 1 !important;
+  font-weight: normal !important;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
+}
+
+input:-ms-input-placeholder {
+  color: $d-subtitle !important;
+  opacity: 1 !important;
+  font-weight: normal !important;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
+}
+
+input::placeholder {
+  color: $d-subtitle !important;
+  opacity: 1 !important;
+  font-weight: normal !important;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
+}
+
+/* looView Tapper */
+ 
+.looViewTapSubTitle,
+%looView-tap-subtitle {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
+/* LooView Headings */
+.looView-h1,
+%looView-h1 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 112px;
+  letter-spacing: -1.5px;
+  color: $looview-electric-blue;
+}
+
+.looView-h2,
+%looView-h2 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: -0.5px;
+  color: $looview-electric-blue;
+}
+
+.looView-h3,
+%looView-h3 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 56px;
+  color: $looview-electric-blue;
+}
+
+.looView-h4,
+%looView-h4 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  color: $looview-electric-blue;
+}
+
+.looView-h5,
+%looView-h5 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: -0.32px;
+  color: $looview-electric-blue;
+}
+
+.looView-h6,
+%looView-h6 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: $looview-electric-blue;
+}
+
+.looViewWhite-h5,
+%looView-h5 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: -0.32px;
+  color: '#FFFFFF';
+}
+
+.looViewWhite-h6,
+%looView-h6 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: '#FFFFFF';
+}
+/* LooView Subtitles */
+.looView-subtitle1,
+%looView-subtitle1 {
+  font-family: PoppinsBold;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: flex-end;
+  color: $looview-electric-blue;
+}
+
+.looView-subtitle2,
+%looView-subtitle2 {
+  font-family: PoppinsBold;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: $looview-electric-blue;
+}
+
+/* LooView Body */
+.looView-body1,
+%looView-body1 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.5px;
+  color: $looview-electric-blue;
+}
+
+.looView-body2,
+%looView-body2 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.12px;
+  color: $looview-electric-blue;
+}
+
+.looView-body3,
+%looView-body3 {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* LooView Special */
+.looView-button,
+%looView-button {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: $looview-electric-blue;
+}
+
+.looView-caption,
+%looView-caption {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: $looview-electric-blue;
+}
+
+.looView-label,
+%looView-label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 30px;
+  color: $looview-electric-blue;
+}
+
+.looView-data,
+%looView-data {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 30px;
+  color: $gray-550;
+}
+
+.looView-icon-sf,
+%looView-icon-sf {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0.18px;
+  color: $looview-electric-blue;
+}
+
+.looView-link,
+%looView-link {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: $looview-electric-blue;
+}
+
+.looView-badge,
+%looView-badge {
+  font-family: PoppinsRegular;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 20px;
+  color: $looview-electric-blue;
+}
+
+/* Text Align */
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+/* Vertical Align */
+.vertical-align-center {
+  display: flex;
+  align-items: center;
+}
+
+/* Row and Columns */
+.row {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .column {
+    &-6 {
+      float: left;
+      width: 50%;
+    }
+
+    &-4 {
+      float: left;
+      width: 33.33%;
+    }
+
+    &-3 {
+      float: left;
+      width: 25%;
+    }
+
+    &-2 {
+      float: left;
+      width: 16.66%;
+    }
+  }
+}
+
+/* Button */
+body {
+  .looView-btn {
+    @extend %looView-button;
+    padding: 16px 25px;
+    text-transform: none;
+    letter-spacing: 0px;
+    border: 1px solid $gray-500;
+    color: $gray-900;
+    width: fit-content;
+
+    &:disabled {
+      border: 1px solid $gray-500;
+      color: $gray-500;
+    }
+
+    &.btn-outline {
+      border: 1px solid $blue-500;
+      color: $blue-500;
+
+      &:disabled {
+        border: 1px solid $gray-500;
+        color: $gray-500;
+      }
+    }
+
+    &.btn-full {
+      border: 0px;
+      background: $blue-500;
+      color: white;
+
+      &:disabled {
+        border: 0px;
+        background: $gray-100;
+        color: $gray-500;
+      }
+    }
+
+    &.btn-highlight {
+      border: 1px solid $gray-900;
+      padding: 16px 25px;
+
+      &:disabled {
+        border: 1px solid $gray-500;
+        color: $gray-500;
+      }
+    }
+
+    &.btn-danger {
+      border: 1px solid $dark-red;
+      color: $dark-red;
+      padding: 16px 25px;
+
+      &:disabled {
+        border: 1px solid $gray-500;
+        color: $gray-500;
+      }
+    }
+  }
+}
+
+body {
+
+  .MuiMenu-paper,
+  .MuiAutocomplete-paper {
+    border: 1px solid $d-border;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+
+    .MuiMenuItem-root,
+    .MuiAutocomplete-option {
+      font-family: PoppinsRegular;
+      color: $d-blue;
+      border-bottom: 1px solid $d-border;
+      transition: all 0.3s;
+
+      &:last-child {
+        border-bottom: 0px;
+      }
+
+      &:hover {
+        background: $d-offwhite;
+      }
+
+      &.Mui-selected {
+        background: $d-input;
+        color: $d-blue;
+      }
+    }
+  }
+}
+
+hr {
+  border-top: 1px solid $d-hr;
+  width: 100%;
+  border-bottom: 0px;
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
