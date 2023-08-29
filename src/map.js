@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import Geocoder from "react-mapbox-gl-geocoder";
+import { ListGroup, ListGroupItem } from "reactstrap";
 import { Container, Col, Row, Button, Input } from "reactstrap";
+import toastr from "toastr";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
-
+import "./map.css";
 const mapStyle = {
   width: "100%",
   height: 600,
@@ -46,40 +47,60 @@ const CustomPopup = ({ index, marker, closePopup }) => {
 };
 
 const MapView = () => {
-  const [selectedObject, setSelectedObject] = useState(null);
-  const [file, setFile] = useState(null);
   const [uploadedObjects, setUploadedObjects] = useState([]);
 
   useEffect(() => {
     // Fetch uploaded objects from the server and update the state
-    // You would need to implement this fetch function
     fetchUploadedObjects();
   }, []);
 
-  const handleFileUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("bimFile", file);
+  const [jsonData, setJsonData] = useState(null);
 
+  // Function to handle file input change
+  const handleFileInputChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      try {
+        const fileContent = await readFile(file);
+        const parsedData = JSON.parse(fileContent);
+        setJsonData(parsedData);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const readFile = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        resolve(e.target.result);
+      };
+      reader.onerror = (e) => {
+        reject(new Error("Error reading the file"));
+      };
+      reader.readAsText(file);
+    });
+  };
+
+  // Function to send JSON data to the backend
+  const handleSendToBackend = async () => {
     try {
-      await axios.post("http://localhost:3001/upload", formData);
-      alert("File uploaded successfully.");
-      // Fetch updated uploaded objects and update the state
+      await axios
+        .post("http://localhost:3001/create", { data: jsonData })
+      toastr.success();
       fetchUploadedObjects();
     } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Error uploading file.");
+      toastr.error();
+      console.error(error);
     }
   };
 
   const fetchUploadedObjects = async () => {
+    setMarkers([]);
     try {
-      const response = await axios.get("http://localhost:3001/objects");
-
-      console.log("@@@@@@@@@@@", response.data);
-      setUploadedObjects(response.data);
+      const response = await axios.get("http://localhost:3001/read");
       response.data.forEach((data) => {
-        console.log(data);
         let locationData = {
           id: data.id,
           index: data.id,
@@ -87,10 +108,9 @@ const MapView = () => {
           latitude: data.latitude,
           longitude: data.longitude,
         };
-
-        console.log(locationData);
-        addLocation(locationData);
+        setMarkers((prevMarkers) => [...prevMarkers, locationData]);
       });
+      setUploadedObjects(response.data);
     } catch (error) {
       console.error("Error fetching uploaded objects:", error);
     }
@@ -104,24 +124,6 @@ const MapView = () => {
   const [tempMarker, setTempMarker] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
-
-  const addLocation = (locationData) => {
-    setMarkers((prevMarkers) => [...prevMarkers, locationData]);
-  };
-
-  const onSelected = (viewport, item) => {
-    setViewport(viewport);
-    setTempMarker({
-      name: item.place_name,
-      longitude: item.center[0],
-      latitude: item.center[1],
-    });
-  };
-
-  const add = () => {
-    setMarkers((prevMarkers) => [...prevMarkers, tempMarker]);
-    setTempMarker(null);
-  };
 
   const setSelectedMarker = (index) => {
     setSelectedIndex(index);
@@ -145,8 +147,16 @@ const MapView = () => {
       <Row className="py-4">
         <Col>
           <div className="upload-section">
-            <Input type="file" onChange={(e) => setFile(e.target.files[0])} />
-            <Button color="primary" onClick={handleFileUpload}>
+            <Input
+              type="file"
+              accept=".json"
+              onChange={handleFileInputChange}
+            />
+            <Button
+              className="button1"
+              color="primary"
+              onClick={handleSendToBackend}
+            >
               Upload
             </Button>
           </div>
@@ -189,23 +199,26 @@ const MapView = () => {
           </ReactMapGL>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          {uploadedObjects.map((location) => (
-            <Col key={location.id}>
-              <p>
-                location Name: <span>{location.filename}</span>
-              </p>
-              <p>
-                Websites built: <span>{location.latitude}</span>
-              </p>
-              <p>
-                location location: <span>{location.longitude}</span>
-              </p>
+      <Container className="list">
+        <Row>
+          <Col>
+            <Col>
+              <h4>Uploaded Places List</h4>
             </Col>
-          ))}
-        </Col>
-      </Row>
+            {uploadedObjects.map((location) => (
+              <Col key={location.id}>
+                <ListGroup>
+                  <ListGroupItem>
+                    location Name: {location.filename}
+                  </ListGroupItem>
+                  <ListGroupItem>latitude: {location.latitude}</ListGroupItem>
+                  <ListGroupItem>longitude: {location.longitude}</ListGroupItem>
+                </ListGroup>
+              </Col>
+            ))}
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };
